@@ -3,34 +3,36 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("POSTGRES_PRISMA_URL")
+  directUrl         = env("POSTGRES_URL_NON_POOLING")
+  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model requests {
-  id                Int                  @id @default(autoincrement())
-  project_id        String               @db.VarChar(255)
-  request_type      String               @db.VarChar(255)
-  name              String?              @db.VarChar(255)
-  account_name      String?              @db.VarChar(255)
-  legacy_org        requests_legacy_org?
-  total_hours_spent String?
-  status            String               @db.VarChar(255)
-  comment           String?              @db.Text
-  created_at        DateTime?            @default(now()) @db.DateTime(0)
-  last_updated      DateTime?            @default(now()) @db.DateTime(0)
-  wbs               String?              @db.VarChar(255)
+  id                Int      @id @default(autoincrement())
+  project_id        String
+  request_type      String
+  name              String
+  account_name      String
+  legacy_org        String?
+  total_hours_spent Int?
+  status            String
+  comment           String?
+  created_at        DateTime @default(now()) @db.Timestamptz(6)
+  last_updated      DateTime @default(now()) @db.Timestamptz(6)
+  wbs               String?
 }
 
 model users {
   id            Int     @id @default(autoincrement())
-  name          String  @db.VarChar(255)
-  email         String  @db.VarChar(255)
-  eid           String  @db.VarChar(255)
-  legacy_org    String  @db.VarChar(11)
-  cost_center   String? @db.VarChar(255)
-  profit_center String? @db.VarChar(255)
-  phone_number  String? @db.VarChar(255)
+  name          String?
+  email         String?
+  eid           String?
+  legacy_org    String?
+  cost_center   String?
+  profit_center String?
+  phone_number  String?
 }
 
 enum requests_legacy_org {

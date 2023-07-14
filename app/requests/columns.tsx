@@ -24,9 +24,9 @@ export type RequestData = {
 	wbs: string | null;
 	legacy_org: string;
 	total_hours_spent: number;
-	comment: string;
-	last_updated: string;
-	created_at: string;
+	comment: string | null;
+	last_updated: Date;
+	created_at: Date;
 };
 
 export const columns: ColumnDef<RequestData>[] = [
