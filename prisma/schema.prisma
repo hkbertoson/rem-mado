@@ -15,8 +15,8 @@ model requests {
   request_type      String
   name              String
   account_name      String
-  legacy_org        String?
-  total_hours_spent Int?
+  legacy_org        String
+  total_hours_spent Int
   status            String
   comment           String?
   created_at        DateTime @default(now()) @db.Timestamptz(6)
@@ -33,9 +33,4 @@ model users {
   cost_center   String?
   profit_center String?
   phone_number  String?
-}
-
-enum requests_legacy_org {
-  CSC
-  ES
 }
