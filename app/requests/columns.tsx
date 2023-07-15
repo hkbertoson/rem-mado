@@ -11,6 +11,7 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import {DataTableColumnHeader} from '@/components/ui/data-table-column-header';
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -32,29 +33,27 @@ export type RequestData = {
 export const columns: ColumnDef<RequestData>[] = [
 	{
 		accessorKey: 'project_id',
-		header: 'Project ID',
+		header: ({column}) => (
+			<DataTableColumnHeader column={column} title="Project ID" />
+		),
 	},
 	{
 		accessorKey: 'name',
-		header: 'Name',
+		header: ({column}) => (
+			<DataTableColumnHeader column={column} title="Name" />
+		),
 	},
 	{
 		accessorKey: 'account_name',
-		header: 'Account Name',
+		header: ({column}) => (
+			<DataTableColumnHeader column={column} title="Account Name" />
+		),
 	},
 	{
 		accessorKey: 'status',
-		header: ({column}) => {
-			return (
-				<Button
-					variant="ghost"
-					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-				>
-					Status
-					<ArrowUpDown className="ml-2 h-4 w-4" />
-				</Button>
-			);
-		},
+		header: ({column}) => (
+			<DataTableColumnHeader column={column} title="Status" />
+		),
 	},
 	{
 		id: 'actions',
