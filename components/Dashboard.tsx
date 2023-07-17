@@ -21,7 +21,22 @@ export const metadata: Metadata = {
 	description: 'Example dashboard app using the components.',
 };
 
-export default function DashboardPage({data}) {
+type RequestData = {
+	id: number;
+	name: string;
+	project_id: string;
+	account_name: string;
+	status: string;
+	request_type: string;
+	wbs: string | null;
+	legacy_org: string;
+	total_hours_spent: number;
+	comment: string | null;
+	last_updated: Date;
+	created_at: Date;
+};
+
+export default function DashboardPage({data}: {data: any[]}) {
 	const totalCompleted = data.filter(
 		(request: {status: string}) => request.status === 'Completed'
 	);
